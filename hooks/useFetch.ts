@@ -48,9 +48,6 @@ const useFetch = () => {
     []
   );
 
-
-  
-
   useEffect(() => {
     const activeTodoArray:Todo[] = [];
     const completedTodoArray:Todo[] = [];

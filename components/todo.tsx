@@ -7,8 +7,14 @@ export default function Todo({ props }: {props: React.ReactNode}) {
   const {counter} = useFetch();
     return (  
     <div className="container mx-auto grid mt-10">
-         <div className="card bg-white w-[480px] justify-self-center">
-   <main>{props}</main>
+    <div className="card bg-white w-[480px] justify-self-center">
+      
+      <input id="toggle-all" type="checkbox" className="toggle-all" />
+      <label htmlFor="toggle-all"> </label>
+      <input placeholder="What need to be done?" type="text" className="pl-14 w-full px-5 py-3 outline-none text-2xl font-light text-gray-800 border-b border-[#e6e6e6]" />
+       <ul className="todo-list text-2xl font-light text-gray-800">
+        {props}
+        </ul>
     <footer className="card-footer flex justify-between items-center text-sm">
       <span className="flex">{counter} Items</span>
       <ul className="flex space-x-2 z-40 filters">    

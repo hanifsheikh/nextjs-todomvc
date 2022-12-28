@@ -2,11 +2,15 @@ import useFetch from "../hooks/useFetch";
 export default function Home() {
   const {todos} = useFetch();
   return (
-  <ul className="todo-list text-3xl font-light text-gray-800">
-    {todos.map(todo => (
-      <li key={todo.id}>{todo.title}</li>
-      ))
-    }
-    </ul>
+   <>   
+   {todos.map(todo => (
+     <li key={todo.id} className="relative">
+      <input type="checkbox" className="toggle" /> 
+      <label> {todo.title}</label>     
+      </li>
+     ))
+   }
+      </>
+ 
     );  
 }
