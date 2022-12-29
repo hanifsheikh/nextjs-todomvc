@@ -7,12 +7,13 @@ type Todo = {
   completed:boolean,
   id: number,  
 }
+ 
 const useFetch = () => {
   const router = useRouter();
   const [counter, setCount]  = useState(0);
-  const [activeTodos, setActiveTodos] = useState([{id:0, completed:false, title:""}]);
-  const [completedTodos, setCompletedTodos]  = useState([{id:0, completed:false, title:""}]);
-  let todos = useMemo(
+  const [activeTodos, setActiveTodos] = useState<Todo[]>([]);
+  const [completedTodos, setCompletedTodos]  = useState<Todo[]>([]);
+  const todos: Todo [] = useMemo(
     () => [
       {
         title: "Todo One",
@@ -26,12 +27,12 @@ const useFetch = () => {
       },
       {
         title: "Todo Three",
-        completed: true,
+        completed: false,
         id: 3,
       },
       {
         title: "Todo Four",
-        completed: true,
+        completed: false,
         id: 4,
       },
       {
