@@ -45,6 +45,14 @@ const useTodoProcessor = () => {
     localStorage.setItem("todos", JSON.stringify(todoData));
   };
 
+  const deleteTodo = (id: number) => {
+    const todos = todoData.filter((todo) => todo.id !== id); 
+    setTodoData((prevState) => {
+      localStorage.setItem("todos", JSON.stringify([...todos]));
+      return [...todos]
+    });
+  };
+
   useEffect(() => {
     const todoArray: Todo[] = [];
 
@@ -64,7 +72,7 @@ const useTodoProcessor = () => {
     setCount(() => todoArray.length);
   }, [todoData, setCount, router, setTodos]);
 
-  return { todos, counter, addTodo, toggleTodo };
+  return { todos, counter, addTodo, toggleTodo, deleteTodo};
 };
 
 export default useTodoProcessor;

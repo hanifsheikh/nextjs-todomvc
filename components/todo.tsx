@@ -6,7 +6,7 @@ import {TodoContext} from "../context/TodoContext";
 export default function Todo({ props }: {props: React.ReactNode}) {
 
   const router = useRouter();
-  const {counter, todos, addTodo, toggleTodo} = useTodoProcessor();
+  const {counter, todos, addTodo, toggleTodo, deleteTodo} = useTodoProcessor();
 
   return (  
     <div className="container mx-auto grid mt-10">
@@ -15,7 +15,7 @@ export default function Todo({ props }: {props: React.ReactNode}) {
       <label htmlFor="toggle-all"> </label>
       <input onKeyUp={(e) => addTodo(e)} placeholder="What need to be done?" type="text" className="pl-14 w-full px-5 py-3 outline-none text-2xl font-light text-gray-800 border-b border-[#e6e6e6]" />
        <ul className="todo-list text-2xl font-light text-gray-800">
-        <TodoContext.Provider value={{todos, toggleTodo}}>
+        <TodoContext.Provider value={{todos, toggleTodo, deleteTodo}}>
             {props}
         </TodoContext.Provider>
         </ul>

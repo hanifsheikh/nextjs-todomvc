@@ -107,3 +107,31 @@
     line-height: 1.2;
     transition: all ease-in-out 0.3s;
 }
+.todo-list li .destroy:after {
+    content: '×';
+    position: absolute;
+    top: -15px;
+    left: 0;
+}
+.todo-list li:hover .destroy {
+    display: block;
+}
+.todo-list li .destroy {
+    display: none;
+    appearance: none;
+    background: none;
+    position: absolute;   
+    right: 15px;
+    bottom: 0;
+    width: 15px;
+    padding: 0;
+    height: 5px;
+    margin: auto 0;
+    font-size: 30px;
+    color: #cc9a9a;
+    margin-bottom: 28px;
+    transition: color 0.2s ease-out;
+}
+.todo-list li .destroy:hover {
+    color:red
+}
