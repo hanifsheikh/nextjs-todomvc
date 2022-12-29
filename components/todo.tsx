@@ -1,19 +1,23 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import useFetch from "../hooks/useFetch";
+import useTodoProcessor from "../hooks/useTodoProcessor";
+import {TodoContext} from "../context/TodoContext";
 export default function Todo({ props }: {props: React.ReactNode}) {
+
   const router = useRouter();
-  const {counter} = useFetch();
-    return (  
+  const {counter, todos, addTodo, toggleTodo} = useTodoProcessor();
+
+  return (  
     <div className="container mx-auto grid mt-10">
-    <div className="card bg-white w-[480px] justify-self-center">
-      
+    <div className="card bg-white w-[480px] justify-self-center">      
       <input id="toggle-all" type="checkbox" className="toggle-all" />
       <label htmlFor="toggle-all"> </label>
-      <input placeholder="What need to be done?" type="text" className="pl-14 w-full px-5 py-3 outline-none text-2xl font-light text-gray-800 border-b border-[#e6e6e6]" />
+      <input onKeyUp={(e) => addTodo(e)} placeholder="What need to be done?" type="text" className="pl-14 w-full px-5 py-3 outline-none text-2xl font-light text-gray-800 border-b border-[#e6e6e6]" />
        <ul className="todo-list text-2xl font-light text-gray-800">
-        {props}
+        <TodoContext.Provider value={{todos, toggleTodo}}>
+            {props}
+        </TodoContext.Provider>
         </ul>
     <footer className="card-footer flex justify-between items-center text-sm">
       <span className="flex">{counter} Items</span>
@@ -24,7 +28,6 @@ export default function Todo({ props }: {props: React.ReactNode}) {
       </ul>
       </footer>
     </div>    
-   </div>
- 
+   </div> 
   );
 }
