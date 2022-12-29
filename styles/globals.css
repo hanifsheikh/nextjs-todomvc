@@ -27,8 +27,7 @@
         color: #777;
         padding: 10px 15px;      
         text-align: center;
-        border-top: 1px solid #e6e6e6;
- 
+        border-top: 1px solid #e6e6e6; 
 }
 .card-footer:before {
     content: '';
@@ -107,16 +106,16 @@
     line-height: 1.2;
     transition: all ease-in-out 0.3s;
 }
-.todo-list li .destroy:after {
+.todo-list li .delete:after {
     content: '×';
     position: absolute;
     top: -15px;
     left: 0;
 }
-.todo-list li:hover .destroy {
+.todo-list li:hover .delete {
     display: block;
 }
-.todo-list li .destroy {
+.todo-list li .delete {
     display: none;
     appearance: none;
     background: none;
@@ -132,6 +131,6 @@
     margin-bottom: 28px;
     transition: color 0.2s ease-out;
 }
-.todo-list li .destroy:hover {
+.todo-list li .delete:hover {
     color:red
 }

@@ -7,7 +7,7 @@ export default function Home() {
         <li key={todo.id} className="relative">
         <input type="checkbox" className="toggle" defaultChecked={todo.completed} onChange={(e) => toggleTodo(e.target.checked, todo.id)} /> 
         <label className={todo.completed ? "line-through text-gray-500" : ""}> {todo.title}</label>    
-        <button onClick={() => deleteTodo(todo.id)} className="destroy"></button> 
+        <button onClick={() => deleteTodo(todo.id)} className="delete"></button> 
         </li>
         ))
       }

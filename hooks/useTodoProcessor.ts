@@ -10,6 +10,7 @@ type Todo = {
 const useTodoProcessor = () => {
   const router = useRouter();
   const [counter, setCount] = useState(0);
+  const [completedCounter, setCompletedCounter] = useState(0);
   let data: Todo[] = [];
   if (typeof window !== "undefined") {
     data = JSON.parse(localStorage.getItem("todos") || "[]");
@@ -52,10 +53,29 @@ const useTodoProcessor = () => {
       return [...todos]
     });
   };
+  const clearCompleted = () => {
+    const todos = todoData.filter((todo) => todo.completed !== true); 
+    setTodoData((prevState) => {
+      localStorage.setItem("todos", JSON.stringify([...todos]));
+      return [...todos]
+    });
+  };
+  const toggleAll = () => {
+    const todos:Todo[] = [];
+     todoData.forEach((todo) => {
+      todo.completed = !todo.completed
+      todos.push(todo)
+    }); 
+    setTodoData((prevState) => {
+      localStorage.setItem("todos", JSON.stringify([...todos]));
+      return [...todos]
+    });
+  };
 
   useEffect(() => {
     const todoArray: Todo[] = [];
 
+    setCompletedCounter(() => 0)
     todoData.map((todo) => {
       if (!todo.completed && router.pathname === "/active") {
         todoArray.push(todo);
@@ -66,13 +86,16 @@ const useTodoProcessor = () => {
       if (router.pathname === "/") {
         todoArray.push(todo);
       }
+      if(todo.completed){
+        setCompletedCounter((prevVal) => prevVal+1)
+      }
     });
 
     setTodos(() => todoArray);
     setCount(() => todoArray.length);
-  }, [todoData, setCount, router, setTodos]);
-
-  return { todos, counter, addTodo, toggleTodo, deleteTodo};
+  }, [todoData, setCount, router, setTodos]); 
+  
+  return { todos, counter, completedCounter, addTodo, toggleTodo,toggleAll, deleteTodo, clearCompleted};
 };
 
 export default useTodoProcessor;
