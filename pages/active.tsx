@@ -1,11 +1,11 @@
 import useFetch from "../hooks/useFetch";
  
 export default function Active() {
-  const {activeTodos} = useFetch();
+  const {todos} = useFetch();
   return (
    <>
-    {activeTodos.map((todo) => (       
-     <li key={todo?.id}>{todo?.title}</li>
+    {todos.map((todo) => (       
+     <li key={todo.id}>{todo.title}</li>
      ))
    }
    </>

@@ -11,9 +11,8 @@ type Todo = {
 const useFetch = () => {
   const router = useRouter();
   const [counter, setCount]  = useState(0);
-  const [activeTodos, setActiveTodos] = useState<Todo[]>([]);
-  const [completedTodos, setCompletedTodos]  = useState<Todo[]>([]);
-  const todos: Todo [] = useMemo(
+  const [todos, setTodos] = useState<Todo[]>([]); 
+  const todoData: Todo [] = useMemo(
     () => [
       {
         title: "Todo One",
@@ -50,35 +49,23 @@ const useFetch = () => {
   );
 
   useEffect(() => {
-    const activeTodoArray:Todo[] = [];
-    const completedTodoArray:Todo[] = [];
-    todos.map((todo) => {
-      if (!todo.completed) {
-        activeTodoArray.push(todo);
-      } else {
-        completedTodoArray.push(todo);
+    const todoArray:Todo[] = []; 
+    todoData.map((todo) => {
+      if (!todo.completed && router.pathname === "/active") {
+        todoArray.push(todo);
+      } 
+      if (todo.completed && router.pathname === "/completed"){
+        todoArray.push(todo);        
+      }
+     if (router.pathname === "/") {
+        todoArray.push(todo);   
       }
     });
+    setTodos(todoArray)
+    setCount(todoArray.length)
+  }, [todoData, setCount, router, setTodos]);
 
-    setActiveTodos(activeTodoArray);
-    setCompletedTodos(completedTodoArray);
-    
-    switch (router.pathname) {
-      case '/':
-        setCount(todos.length)
-        break;
-        case '/active':
-        setCount(activeTodoArray.length)
-         break;
-       case '/completed':
-        setCount(completedTodoArray.length)
-        break;  
-      default:
-        break;
-    }
-  }, [todos, setActiveTodos, setCompletedTodos, setCount, router]);
-
-  return { todos, activeTodos, completedTodos, counter };
+  return { todos, counter };
 };
 
 export default useFetch;

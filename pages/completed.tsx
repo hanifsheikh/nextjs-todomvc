@@ -1,9 +1,9 @@
 import useFetch from "../hooks/useFetch";
 export default function Completed() {
-  const {completedTodos} = useFetch();
+  const {todos} = useFetch();
   return (
  <>
- {completedTodos.map(todo => (
+ {todos.map(todo => (
    <li key={todo.id}>{todo.title}</li>
    ))
  }
