@@ -10,6 +10,7 @@ type Todo = {
 const useTodoProcessor = () => {
   const router = useRouter();
   const [counter, setCount] = useState(0);
+  const [editingID, setEditingID] = useState(0);
   const [completedCounter, setCompletedCounter] = useState(0);
   let data: Todo[] = [];
   if (typeof window !== "undefined") {
@@ -46,6 +47,23 @@ const useTodoProcessor = () => {
     localStorage.setItem("todos", JSON.stringify(todoData));
   };
 
+  const editTodo = (id: number) => { 
+    setEditingID(() => id);
+    // const todos = todoData.filter((todo) => todo.id !== id); 
+    // setTodoData((prevState) => {
+    //   localStorage.setItem("todos", JSON.stringify([...todos]));
+    //   return [...todos]
+    // });
+  };
+  const updateTodo = (id: number) => {
+ 
+    setEditingID(() => 0);
+    // const todos = todoData.filter((todo) => todo.id !== id); 
+    // setTodoData((prevState) => {
+    //   localStorage.setItem("todos", JSON.stringify([...todos]));
+    //   return [...todos]
+    // });
+  };
   const deleteTodo = (id: number) => {
     const todos = todoData.filter((todo) => todo.id !== id); 
     setTodoData((prevState) => {
@@ -62,10 +80,19 @@ const useTodoProcessor = () => {
   };
   const toggleAll = () => {
     const todos:Todo[] = [];
-     todoData.forEach((todo) => {
-      todo.completed = !todo.completed
-      todos.push(todo)
-    }); 
+    const haveActiveTodo = todoData.find(todo => !todo.completed)
+    if(haveActiveTodo){
+      todoData.forEach((todo) => {
+       todo.completed = true
+       todos.push(todo)
+     }); 
+    }
+    else {
+    todoData.forEach((todo) => {
+       todo.completed = false
+       todos.push(todo)
+     }); 
+    }
     setTodoData((prevState) => {
       localStorage.setItem("todos", JSON.stringify([...todos]));
       return [...todos]
@@ -95,7 +122,7 @@ const useTodoProcessor = () => {
     setCount(() => todoArray.length);
   }, [todoData, setCount, router, setTodos]); 
   
-  return { todos, counter, completedCounter, addTodo, toggleTodo,toggleAll, deleteTodo, clearCompleted};
+  return { todos, counter, completedCounter, addTodo, toggleTodo,toggleAll, editingID, editTodo, updateTodo, deleteTodo, clearCompleted};
 };
 
 export default useTodoProcessor;

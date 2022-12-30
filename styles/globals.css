@@ -41,8 +41,7 @@
     box-shadow: 0 1px 1px rgb(0 0 0 / 20%), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgb(0 0 0 / 20%), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgb(0 0 0 / 20%);
 }
 .todo-list li{
-    border-bottom: 1px solid #e6e6e6;
-    padding: 5px 0px 0px 3px ;
+    border-bottom: 1px solid #e6e6e6;    
 }
 
 .filters li a {
@@ -91,17 +90,17 @@
 .todo-list li .toggle + label {
     background-image: url('../public/uncheck.svg'); 
     background-repeat: no-repeat;
-    background-position: center left;
+    background-position: top 10px left;
 }
 .todo-list li .toggle:checked + label {
     background-image: url('../public/check.svg'); 
     background-repeat: no-repeat;
-    background-position: center left;
+    background-position: top 10px left;
 }
 
 .todo-list li label { 
     word-break: break-all;
-    padding: 15px 0px 15px 55px;
+    padding: 15px 15px 15px 55px;
     display: block;
     line-height: 1.2;
     transition: all ease-in-out 0.3s;
@@ -133,4 +132,21 @@
 }
 .todo-list li .delete:hover {
     color:red
+}
+.edit {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    font-size: 24px;
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: 1.4em;
+    border: 0;
+    color: inherit;
+    padding:15px 0px 15px 55px;
+    border: 1px solid #999;
+    box-shadow: inset 0 -1px 5px 0 rgb(0 0 0 / 20%);
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
