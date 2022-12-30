@@ -10,7 +10,7 @@ export default function Todo({ props }: {props: React.ReactNode}) {
 
   return (  
     <div className="container mx-auto grid mt-10">
-    <div className="card bg-white w-[480px] justify-self-center">      
+    <div className="card bg-white max-w-[512px] justify-self-center">      
       <input id="toggle-all" type="checkbox" onChange={() => toggleAll()} className="toggle-all" />
       <label htmlFor="toggle-all"> </label>
       <input onKeyUp={(e) => addTodo(e)} placeholder="What need to be done?" type="text" className="pl-14 w-full px-5 py-3 outline-none text-2xl font-light text-gray-800 border-b border-[#e6e6e6]" />

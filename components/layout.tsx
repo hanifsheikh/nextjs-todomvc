@@ -11,9 +11,11 @@ export default function Layout({ children }: {children: React.ReactNode}) {
      <Head>
      <title>NEXT.js - TodoMVC</title>
      </Head>
-     <Header/>
+    <div className="container mx-auto">
+    <Header/>
      <Todo props={children}/> 
      <Footer/>
+    </div>
     </>
   );
 }
