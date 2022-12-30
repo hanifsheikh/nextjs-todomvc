@@ -19,7 +19,7 @@ export default function Todo({ props }: {props: React.ReactNode}) {
             {props}
         </TodoContext.Provider>
         </ul>
-    <footer className="card-footer grid grid-cols-3 items-center text-sm">
+    <footer className="card-footer grid grid-cols-3 items-center text-xs md:text-sm">
       <span className="cols-1 text-left">{counter} Items</span>
      <div className="cols-1 text-center z-40">
      <ul className="flex space-x-2  filters">    
